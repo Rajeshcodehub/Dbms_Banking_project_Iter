@@ -1,0 +1,27 @@
+CREATE TABLE Customer (
+    cust_no VARCHAR2(5) PRIMARY KEY,
+    name VARCHAR2(50),
+    phoneno VARCHAR2(15),
+    city VARCHAR2(50)
+);
+CREATE TABLE Accounts (
+    account_no VARCHAR2(5) NOT NULL,
+    cust_no VARCHAR2(5),
+    type VARCHAR2(20),
+    balance NUMBER(10, 2),
+    branch_code VARCHAR2(5),
+    branch_name VARCHAR2(50),
+    branch_city VARCHAR2(50),
+    CONSTRAINT pk_account PRIMARY KEY (account_no),
+    CONSTRAINT fk_cust_no FOREIGN KEY (cust_no) REFERENCES Customer(cust_no)
+);
+
+CREATE TABLE Loan (
+    loan_no VARCHAR2(5) PRIMARY KEY,
+    cust_no VARCHAR2(5),
+    loan_amount NUMBER(10, 2),
+    branch_code VARCHAR2(5),
+    branch_name VARCHAR2(50),
+    branch_city VARCHAR2(50),
+    CONSTRAINT fk_loan_cust FOREIGN KEY (cust_no) REFERENCES Customer(cust_no)
+);
